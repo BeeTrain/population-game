@@ -1,4 +1,4 @@
-package app
+package app.state
 
 import app.model.individual.Population
 import app.model.mutation.Mutation
@@ -8,9 +8,9 @@ import app.model.reproduction.Reproduction
 import app.model.selection.FitnessSelection
 import app.model.selection.Selection
 
-private const val MUTATION_CHANCE = 10
+private const val MUTATION_CHANCE = 20
 
-class PopulationLife(
+class PopulationLifecycle(
     firstPopulation: Population = Population.create(),
     private val mutationChance: Int = MUTATION_CHANCE,
     private val selectionMethod: Selection = FitnessSelection(),
@@ -68,5 +68,9 @@ class PopulationLife(
         currentPopulation = mutationMethod.execute(currentPopulation)
         println("after mutation: $currentPopulation")
         println("population size:${currentPopulation.size}")
+    }
+
+    fun populationStatus(): String {
+        return "\ncurrent population: $currentPopulation"
     }
 }
