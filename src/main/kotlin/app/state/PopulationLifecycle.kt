@@ -73,4 +73,12 @@ class PopulationLifecycle(
     fun populationStatus(): String {
         return "\ncurrent population: $currentPopulation"
     }
+
+    fun cycleStatus(): String {
+        return "cycle: ${cycles}"
+    }
+
+    fun populationSize(): String {
+        return "population: ${currentPopulation.size}"
+    }
 }

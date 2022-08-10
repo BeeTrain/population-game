@@ -7,7 +7,4 @@ object AppState {
     val game = GameState()
 
     var isInfoWindowVisible = mutableStateOf(true)
-
-    var populationStatusState = mutableStateOf(game.lifecycle.populationStatus())
-
 }

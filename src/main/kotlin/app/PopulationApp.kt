@@ -7,15 +7,17 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import app.view.ControlPanel
-import app.view.InfoPanel
+import app.view.GameInfoPanel
+import app.view.LogInfoPanel
 
 @Composable
 @Preview
 fun PopulationApp() {
     MaterialTheme {
         Box(Modifier.fillMaxSize()) {
-            InfoPanel()
+            LogInfoPanel()
             ControlPanel()
+            GameInfoPanel()
         }
     }
 }
