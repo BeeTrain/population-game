@@ -7,7 +7,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import app.config.theme.colors
-import app.view.LogInfoPanel
+import app.view.InfoWindow
 import app.view.Toast
 import app.view.control.ControlPanel
 import app.view.info.GameInfoPanel
@@ -19,7 +19,7 @@ fun PopulationApp() {
         colors = colors()
     ) {
         Box(Modifier.fillMaxSize()) {
-            LogInfoPanel()
+            InfoWindow()
             ControlPanel()
             GameInfoPanel()
             Toast()

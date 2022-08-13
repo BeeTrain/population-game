@@ -1,6 +1,7 @@
 package app.state
 
 import androidx.compose.runtime.mutableStateOf
+import app.extension.clearLog
 import app.extension.update
 
 class GameState {
@@ -13,6 +14,7 @@ class GameState {
     fun restartGame() {
         lifecycle = PopulationLifecycle()
         updateStates()
+        clearLog()
     }
 
     fun runCycle() {

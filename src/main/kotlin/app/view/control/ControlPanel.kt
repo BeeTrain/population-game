@@ -41,19 +41,7 @@ fun BoxScope.ControlPanel() {
         ControlButton(
             title = "Restart", onClick = onRestartClick()
         )
-        ControlButton(
-            title = getVisibilityButtonTitle(isInfoWindowVisible),
-            onClick = onVisibilityButtonClick(isInfoWindowVisible)
-        )
     }
-}
-
-private fun getVisibilityButtonTitle(isInfoWindowVisible: Boolean): String {
-    return if (isInfoWindowVisible) "Hide" else "Show"
-}
-
-private fun onVisibilityButtonClick(isInfoWindowVisible: Boolean): () -> Unit = {
-    AppState.isInfoWindowVisible.update(isInfoWindowVisible.not())
 }
 
 private fun onRestartClick(): () -> Unit = {

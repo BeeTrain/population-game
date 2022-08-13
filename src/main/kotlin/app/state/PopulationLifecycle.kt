@@ -1,5 +1,6 @@
 package app.state
 
+import app.extension.addLog
 import app.model.individual.Population
 import app.model.lifecycle.LifecyclePeriod
 import app.model.lifecycle.LifecycleStatus
@@ -44,33 +45,43 @@ class PopulationLifecycle(
 
     private fun startCycle(cycleNumber: Int) {
         println("cycle #${cycleNumber + 1} started")
+        addLog("cycle #${cycleNumber + 1} started")
         println("current population: $currentPopulation")
+        addLog("current population: $currentPopulation")
         println("population size:${currentPopulation.size}")
+        addLog("population size:${currentPopulation.size}")
 
         selection()
         reproduction()
         mutation()
 
         println("cycle #${cycleNumber + 1} ended")
+        addLog("cycle #${cycleNumber + 1} ended")
         println("\n")
     }
 
     private fun selection() {
         currentPopulation = selectionMethod.execute(currentPopulation)
         println("after selection: $currentPopulation")
+        addLog("after selection: $currentPopulation")
         println("population size:${currentPopulation.size}")
+        addLog("population size:${currentPopulation.size}")
     }
 
     private fun reproduction() {
         currentPopulation = reproductionMethod.execute(currentPopulation)
         println("after reproduction: $currentPopulation")
+        addLog("after reproduction: $currentPopulation")
         println("population size:${currentPopulation.size}")
+        addLog("population size:${currentPopulation.size}")
     }
 
     private fun mutation() {
         currentPopulation = mutationMethod.execute(currentPopulation)
         println("after mutation: $currentPopulation")
+        addLog("after mutation: $currentPopulation")
         println("population size:${currentPopulation.size}")
+        addLog("population size:${currentPopulation.size}")
     }
 
     fun getLifecycleStatus(): LifecycleStatus {
