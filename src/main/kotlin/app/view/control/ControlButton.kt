@@ -1,4 +1,4 @@
-package app.view
+package app.view.control
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.ColumnScope
@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import app.extension.visibility
@@ -21,7 +20,7 @@ fun ColumnScope.ControlButton(
 ) {
     Button(
         modifier = Modifier
-            .width(140.dp)
+            .width(200.dp)
             .padding(horizontal = 16.dp, vertical = 4.dp)
             .visibility(visibility),
         onClick = {

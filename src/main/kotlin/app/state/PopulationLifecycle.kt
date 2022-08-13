@@ -1,6 +1,9 @@
 package app.state
 
 import app.model.individual.Population
+import app.model.lifecycle.LifecyclePeriod
+import app.model.lifecycle.LifecycleStatus
+import app.model.lifecycle.getPopulationStatus
 import app.model.mutation.Mutation
 import app.model.mutation.RandomMutation
 import app.model.reproduction.CrossingReproduction
@@ -70,15 +73,10 @@ class PopulationLifecycle(
         println("population size:${currentPopulation.size}")
     }
 
-    fun populationStatus(): String {
-        return "\ncurrent population: $currentPopulation"
-    }
-
-    fun cycleStatus(): String {
-        return "cycle: ${cycles}"
-    }
-
-    fun populationSize(): String {
-        return "population: ${currentPopulation.size}"
+    fun getLifecycleStatus(): LifecycleStatus {
+        return LifecycleStatus(
+            population = getPopulationStatus(currentPopulation),
+            period = LifecyclePeriod(cycles)
+        )
     }
 }

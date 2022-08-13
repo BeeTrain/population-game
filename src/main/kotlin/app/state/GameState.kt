@@ -8,9 +8,7 @@ class GameState {
     var lifecycle = PopulationLifecycle()
         private set
 
-    var populationStatusState = mutableStateOf(lifecycle.populationStatus())
-    var cycleStatusState = mutableStateOf(lifecycle.cycleStatus())
-    var populationSizeState = mutableStateOf(lifecycle.populationSize())
+    val lifecycleStatusState = mutableStateOf(lifecycle.getLifecycleStatus())
 
     fun restartGame() {
         lifecycle = PopulationLifecycle()
@@ -23,8 +21,6 @@ class GameState {
     }
 
     private fun updateStates() {
-        populationStatusState.update(lifecycle.populationStatus())
-        cycleStatusState.update(lifecycle.cycleStatus())
-        populationSizeState.update(lifecycle.populationSize())
+        lifecycleStatusState.update(lifecycle.getLifecycleStatus())
     }
 }

@@ -21,7 +21,7 @@ import app.state.AppState
 @Composable
 @Preview
 fun BoxScope.LogInfoPanel() {
-    val populationStatusText by remember { AppState.game.populationStatusState }
+    val lifecycleStatus by remember { AppState.game.lifecycleStatusState }
     val isInfoWindowVisible by remember { AppState.isInfoWindowVisible }
 
     Column(
@@ -33,7 +33,7 @@ fun BoxScope.LogInfoPanel() {
             backgroundColor = Color.LightGray
         ) {
             Text(
-                populationStatusText,
+                lifecycleStatus.population.toString(),
                 fontSize = 14.sp,
                 modifier = Modifier.align(Alignment.CenterHorizontally)
                     .padding(16.dp),
