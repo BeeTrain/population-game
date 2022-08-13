@@ -1,4 +1,4 @@
-package app.view.info
+package app.view.gameinfo
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.Arrangement
@@ -12,14 +12,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import app.config.theme.ThemeColors
-import app.extension.hideToast
 import app.extension.onHover
-import app.extension.showToast
+import app.state.AppState
 
 @Composable
 @Preview
@@ -28,16 +26,16 @@ fun RowScope.GameInfoCell(
     text: String,
     description: String
 ) {
-    val cellContentColor = remember { mutableStateOf(Color.Black) }
+    val cellContentColor = remember { mutableStateOf(ThemeColors.onSecondary) }
     val textStyle = TextStyle()
 
     val mouseHover = Modifier.onHover { isHover ->
         if (isHover) {
             cellContentColor.value = ThemeColors.highlight
-            showToast(description)
+            AppState.toast.show(description)
         } else {
             cellContentColor.value = ThemeColors.onSecondary
-            hideToast()
+            AppState.toast.hide()
         }
     }
 

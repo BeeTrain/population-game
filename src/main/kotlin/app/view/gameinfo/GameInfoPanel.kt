@@ -1,4 +1,4 @@
-package app.view.info
+package app.view.gameinfo
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
@@ -18,6 +18,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import app.config.theme.ThemeColors
 import app.state.AppState
+import app.view.gameinfo.resources.GameInfoStrings
 
 @Composable
 @Preview
@@ -33,12 +34,12 @@ fun BoxScope.GameInfoPanel() {
         GameInfoCell(
             icon = Icons.Rounded.AccountCircle,
             text = lifecycleStatus.population.people.toString(),
-            description = "Population size"
+            description = GameInfoStrings.populationDescription
         )
         GameInfoCell(
             icon = Icons.Rounded.DateRange,
             text = lifecycleStatus.period.cycle.toString(),
-            description = "Cycles count"
+            description = GameInfoStrings.cyclesDescription
         )
     }
 }

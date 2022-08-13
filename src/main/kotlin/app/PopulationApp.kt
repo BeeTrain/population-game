@@ -7,10 +7,10 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import app.config.theme.colors
-import app.view.InfoWindow
-import app.view.Toast
+import app.view.info.InfoWindow
+import app.view.toast.Toast
 import app.view.control.ControlPanel
-import app.view.info.GameInfoPanel
+import app.view.gameinfo.GameInfoPanel
 
 @Composable
 @Preview

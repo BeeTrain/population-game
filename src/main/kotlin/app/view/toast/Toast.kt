@@ -1,4 +1,4 @@
-package app.view
+package app.view.toast
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeOut
@@ -22,8 +22,8 @@ import app.state.AppState
 @Composable
 @Preview
 fun BoxScope.Toast() {
-    val isVisible by remember { AppState.isToastVisible }
-    val toastText by remember { AppState.toastText }
+    val isVisible by remember { AppState.toast.isVisible }
+    val toastText by remember { AppState.toast.text }
 
     Column(
         modifier = Modifier
@@ -46,6 +46,5 @@ fun BoxScope.Toast() {
                 )
             }
         }
-
     }
 }

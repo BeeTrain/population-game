@@ -15,15 +15,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.unit.dp
 import app.config.theme.ThemeColors
-import app.extension.update
 import app.model.lifecycle.PopulationStatus
 import app.state.AppState
+import app.view.control.resources.ControlPanelStrings
 
 @Composable
 @Preview
 fun BoxScope.ControlPanel() {
     val lifecycleStatus by remember { AppState.game.lifecycleStatusState }
-    val isInfoWindowVisible by remember { AppState.isInfoWindowVisible }
 
     Column(
         modifier = Modifier.align(Alignment.CenterEnd)
@@ -34,12 +33,13 @@ fun BoxScope.ControlPanel() {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         ControlButton(
-            title = "Run cycle",
+            title = ControlPanelStrings.runCycleTitle,
             visibility = lifecycleStatus.population != PopulationStatus.Extinction,
             onClick = onRunCycleClick(),
         )
         ControlButton(
-            title = "Restart", onClick = onRestartClick()
+            title = ControlPanelStrings.restartTitle,
+            onClick = onRestartClick()
         )
     }
 }
