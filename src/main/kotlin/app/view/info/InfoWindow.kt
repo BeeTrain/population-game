@@ -3,6 +3,9 @@ package app.view.info
 import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.VerticalScrollbar
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.Orientation
+import androidx.compose.foundation.gestures.draggable
+import androidx.compose.foundation.gestures.rememberDraggableState
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.heightIn
@@ -64,6 +67,14 @@ fun BoxScope.InfoWindow() {
                     modifier = Modifier.align(Alignment.CenterHorizontally)
                         .padding(8.dp)
                         .verticalScroll(scrollState)
+                        .draggable(
+                            orientation = Orientation.Vertical,
+                            state = rememberDraggableState { delta ->
+                                coroutineScope.launch {
+                                    scrollState.scrollTo((scrollState.value + delta).toInt())
+                                }
+                            }
+                        )
                 )
             }
         }
