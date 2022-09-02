@@ -1,6 +1,5 @@
 package app.view.control
 
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -13,22 +12,25 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.unit.dp
 import app.config.theme.ThemeColors
+import app.extension.update
 import app.model.lifecycle.PopulationStatus
 import app.state.AppState
 import app.view.control.resources.ControlPanelStrings
 
 @Composable
-@Preview
 fun BoxScope.ControlPanel() {
+    val state = AppState.controlPanelState
     val lifecycleStatus by remember { AppState.game.lifecycleStatusState }
 
     Column(
         modifier = Modifier.align(Alignment.CenterEnd)
             .fillMaxHeight()
             .border(width = 1.dp, color = ThemeColors.secondaryVariant, shape = RectangleShape)
-            .background(ThemeColors.secondaryVariant),
+            .background(ThemeColors.secondaryVariant)
+            .onGloballyPositioned { state.size.update(it.size) },
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

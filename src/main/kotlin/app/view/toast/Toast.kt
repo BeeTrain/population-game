@@ -2,7 +2,6 @@ package app.view.toast
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeOut
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -20,7 +19,6 @@ import app.extension.slideInVerticallyReversed
 import app.state.AppState
 
 @Composable
-@Preview
 fun BoxScope.Toast() {
     val isVisible by remember { AppState.toast.isVisible }
     val toastText by remember { AppState.toast.text }
@@ -41,7 +39,8 @@ fun BoxScope.Toast() {
                 Text(
                     text = toastText,
                     fontSize = 14.sp,
-                    modifier = Modifier.align(Alignment.CenterHorizontally)
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
                         .padding(16.dp)
                 )
             }

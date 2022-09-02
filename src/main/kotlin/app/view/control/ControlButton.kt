@@ -1,6 +1,5 @@
 package app.view.control
 
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
@@ -12,7 +11,6 @@ import androidx.compose.ui.unit.dp
 import app.extension.visibility
 
 @Composable
-@Preview
 fun ColumnScope.ControlButton(
     title: String,
     visibility: Boolean = true,

@@ -1,6 +1,5 @@
 package app.view.gameinfo
 
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.BoxScope
@@ -15,14 +14,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.unit.dp
 import app.config.theme.ThemeColors
+import app.extension.update
 import app.state.AppState
 import app.view.gameinfo.resources.GameInfoStrings
 
 @Composable
-@Preview
 fun BoxScope.GameInfoPanel() {
+    val state = AppState.gameInfoPanelState
     val lifecycleStatus by remember { AppState.game.lifecycleStatusState }
 
     Row(
@@ -30,6 +31,7 @@ fun BoxScope.GameInfoPanel() {
             .border(width = 1.dp, color = ThemeColors.secondaryVariant, shape = RectangleShape)
             .background(ThemeColors.secondary)
             .fillMaxWidth()
+            .onGloballyPositioned { state.size.update(it.size) }
     ) {
         GameInfoCell(
             icon = Icons.Rounded.AccountCircle,

@@ -1,11 +1,13 @@
 package app
 
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import app.config.theme.colors
 import app.view.control.ControlPanel
 import app.view.gameinfo.GameInfoPanel
@@ -19,7 +21,11 @@ fun PopulationApp() {
     MaterialTheme(
         colors = colors()
     ) {
-        Box(Modifier.fillMaxSize()) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.Black)
+        ) {
             MapView()
             InfoWindow()
             ControlPanel()

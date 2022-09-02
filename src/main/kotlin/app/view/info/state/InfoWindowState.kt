@@ -1,4 +1,4 @@
-package app.state
+package app.view.info.state
 
 import androidx.compose.runtime.mutableStateOf
 import app.extension.update

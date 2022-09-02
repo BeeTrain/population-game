@@ -1,6 +1,5 @@
 package app.view.info
 
-import androidx.compose.desktop.ui.tooling.preview.Preview
 import androidx.compose.foundation.VerticalScrollbar
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
@@ -33,7 +32,6 @@ import app.view.info.resources.InfoWindowStrings
 import kotlinx.coroutines.launch
 
 @Composable
-@Preview
 fun BoxScope.InfoWindow() {
     val isInfoWindowVisible by remember { AppState.infoWindow.isVisible }
     val infoWindowText by remember { AppState.infoWindow.text }
