@@ -22,6 +22,6 @@ class GameState {
     }
 
     private fun updateStates() {
-        lifecycleStatusState.update(lifecycle.getLifecycleStatus())
+        lifecycleStatusState.update { lifecycle.getLifecycleStatus() }
     }
 }

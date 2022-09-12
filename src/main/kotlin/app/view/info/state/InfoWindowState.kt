@@ -9,15 +9,14 @@ class InfoWindowState {
     var text = mutableStateOf("")
 
     fun toggleIconClick() {
-        isVisible.update(isVisible.value.not())
+        isVisible.update { it.not() }
     }
 
     fun addLog(message: String) {
-        val newValue = (text.value + message + "\n")
-        text.update(newValue)
+        text.update { "${it}${message}\n" }
     }
 
     fun clearLog() {
-        text.update("")
+        text.update { "" }
     }
 }

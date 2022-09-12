@@ -1,5 +1,7 @@
 package app.extension
 
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -24,3 +26,9 @@ fun Modifier.onHover(hasHover: (Boolean) -> Unit): Modifier = composed {
         onExit = { isHover.value = false; true }
     )
 }
+
+fun Modifier.nonClickable() = clickable(
+    interactionSource = MutableInteractionSource(),
+    indication = null,
+    onClick = {}
+)

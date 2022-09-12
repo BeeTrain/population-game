@@ -14,13 +14,13 @@ class ToastState {
     var text = mutableStateOf("")
 
     fun show(message: String, millis: Long = DEFAULT_DURATION) {
-        text.update(message)
-        isVisible.update(true)
+        text.update { message }
+        isVisible.update { true }
         Timer().schedule(millis) { hide() }
     }
 
     private fun hide() {
-        isVisible.update(false)
+        isVisible.update { false }
     }
 }
 

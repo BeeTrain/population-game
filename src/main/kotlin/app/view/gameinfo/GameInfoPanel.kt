@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.unit.dp
 import app.config.theme.ThemeColors
+import app.extension.nonClickable
 import app.extension.update
 import app.state.AppState
 import app.view.gameinfo.resources.GameInfoStrings
@@ -31,7 +32,8 @@ fun BoxScope.GameInfoPanel() {
             .border(width = 1.dp, color = ThemeColors.secondaryVariant, shape = RectangleShape)
             .background(ThemeColors.secondary)
             .fillMaxWidth()
-            .onGloballyPositioned { state.size.update(it.size) }
+            .onGloballyPositioned { coordinates -> state.size.update { coordinates.size } }
+            .nonClickable()
     ) {
         GameInfoCell(
             icon = Icons.Rounded.AccountCircle,

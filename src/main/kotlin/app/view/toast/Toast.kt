@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import app.extension.nonClickable
 import app.extension.slideInVerticallyReversed
 import app.state.AppState
 
@@ -27,6 +28,7 @@ fun BoxScope.Toast() {
         modifier = Modifier
             .align(Alignment.BottomCenter)
             .padding(bottom = 20.dp)
+            .nonClickable()
     ) {
         AnimatedVisibility(
             visible = isVisible,

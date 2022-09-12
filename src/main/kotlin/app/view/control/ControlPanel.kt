@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.unit.dp
 import app.config.theme.ThemeColors
+import app.extension.nonClickable
 import app.extension.update
 import app.model.lifecycle.PopulationStatus
 import app.state.AppState
@@ -26,13 +27,14 @@ fun BoxScope.ControlPanel() {
     val lifecycleStatus by remember { AppState.game.lifecycleStatusState }
 
     Column(
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier.align(Alignment.CenterEnd)
             .fillMaxHeight()
             .border(width = 1.dp, color = ThemeColors.secondaryVariant, shape = RectangleShape)
             .background(ThemeColors.secondaryVariant)
-            .onGloballyPositioned { state.size.update(it.size) },
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
+            .onGloballyPositioned { coordinates -> state.size.update { coordinates.size } }
+            .nonClickable()
     ) {
         ControlButton(
             title = ControlPanelStrings.runCycleTitle,
@@ -48,6 +50,7 @@ fun BoxScope.ControlPanel() {
 
 private fun onRestartClick(): () -> Unit = {
     AppState.game.restartGame()
+    AppState.mapViewState.recreateMap()
 }
 
 private fun onRunCycleClick(): () -> Unit = {
