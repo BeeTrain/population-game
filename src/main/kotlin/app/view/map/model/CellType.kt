@@ -10,3 +10,15 @@ enum class CellType(val path: String) {
     STONES("land/stones/stones.png"),
     SWAMP("land/swamp/swamp.png")
 }
+
+val CellType?.isWater: Boolean
+    get() = this == CellType.WATER
+
+val CellType?.isWaterOrNull: Boolean
+    get() = this == CellType.WATER || this == null
+
+val CellType?.isGround: Boolean
+    get() = this == CellType.GROUND
+
+val CellType?.isSand: Boolean
+    get() = this == CellType.SAND

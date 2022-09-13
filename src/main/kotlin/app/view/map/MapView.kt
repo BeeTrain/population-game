@@ -1,6 +1,6 @@
 package app.view.map
 
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Box
@@ -27,9 +27,11 @@ import androidx.compose.ui.unit.sp
 import app.extension.update
 import app.state.AppState
 import app.view.map.model.randomBuilding
+import app.view.map.state.Land
 import app.view.toast.state.showToast
 import kotlin.math.roundToInt
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun BoxScope.MapView() {
     val state = AppState.mapViewState
@@ -72,13 +74,7 @@ fun BoxScope.MapView() {
                                     showToast("[${rowIndex + 1}, ${cellIndex + 1}]")
                                 }
                         ) {
-                            Image(
-                                painter = cell.land,
-                                contentDescription = "",
-                                modifier = Modifier
-                                    .align(Alignment.Center)
-                                    .size(mapModel.cellSize.dp)
-                            )
+                            Land(mapModel.getLand(key.value))
                             if (key.value.building.isNotEmpty()) {
                                 Text(
                                     text = key.value.building,

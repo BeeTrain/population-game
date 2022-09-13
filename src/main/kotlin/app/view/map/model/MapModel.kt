@@ -1,5 +1,9 @@
 package app.view.map.model
 
+import app.view.map.extension.cellImage
+import app.view.map.land.getGroundLand
+import app.view.map.land.getWaterLand
+
 private const val PADDING = 0.2
 
 data class MapModel(
@@ -19,6 +23,30 @@ data class MapModel(
         if (index > width * height - 1) return null
 
         return cells[index]
+    }
+
+    fun getLand(cell: Cell): CellLand {
+        val surroundings = CellSurroundings(
+            top = getCell(cell.index - width),
+            bot = getCell(cell.index + width),
+            left = getCell(cell.index - 1),
+            right = getCell(cell.index + 1),
+            topleft = getCell(cell.index - width - 1),
+            topright = getCell(cell.index - width + 1),
+            botleft = getCell(cell.index + width - 1),
+            botright = getCell(cell.index + width + 1),
+        )
+
+        return when (cell.cellType) {
+            CellType.GROUND -> getGroundLand(surroundings)
+            CellType.WATER -> getWaterLand(surroundings)
+            else -> CellLand(
+                top1 = cellImage(cell.cellType),
+                top2 = cellImage(cell.cellType),
+                bot1 = cellImage(cell.cellType),
+                bot2 = cellImage(cell.cellType)
+            )
+        }
     }
 }
 
