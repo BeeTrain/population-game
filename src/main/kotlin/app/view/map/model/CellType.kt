@@ -22,3 +22,6 @@ val CellType?.isGround: Boolean
 
 val CellType?.isSand: Boolean
     get() = this == CellType.SAND
+
+val CellType?.isAsh: Boolean
+    get() = this == CellType.ASH
