@@ -1,25 +1,15 @@
-package app.view.map.land
+package app.view.map.land.generator
 
 import androidx.compose.ui.graphics.painter.BitmapPainter
 import androidx.compose.ui.graphics.painter.Painter
 import app.extension.imageResource
 import app.view.map.model.CellLand
 import app.view.map.model.CellSurroundings
+import app.view.map.model.CellType
 import app.view.map.model.isWater
 import app.view.map.model.isWaterOrNull
 
-val water = listOf(
-    "land/water/000.png",
-    "land/water/001.png",
-    "land/water/002.png",
-    "land/water/003.png",
-    "land/water/004.png",
-    "land/water/005.png",
-)
-
-fun randomWaterPath(): String {
-    return water.random()
-}
+private fun randomWaterPath() = CellType.WATER.randomLandPath()
 
 fun getWaterLand(surroundings: CellSurroundings): CellLand {
     return CellLand(
@@ -51,7 +41,12 @@ private fun getTop2Land(surroundings: CellSurroundings): Painter {
     val topright = surroundings.topright?.cellType
 
     return when {
-        right.isWaterOrNull && topright.isWaterOrNull && top.isWaterOrNull -> BitmapPainter(imageResource(randomWaterPath()))
+        right.isWaterOrNull && topright.isWaterOrNull && top.isWaterOrNull -> BitmapPainter(
+            imageResource(
+                randomWaterPath()
+            )
+        )
+
         right.isWater && top.isWater && !topright.isWater -> BitmapPainter(imageResource("land/water/border/xoxx.png"))
         !top.isWater -> BitmapPainter(imageResource("land/water/border/ooxx.png"))
         right.isWaterOrNull -> BitmapPainter(imageResource(randomWaterPath()))
@@ -81,7 +76,12 @@ private fun getBot2Land(surroundings: CellSurroundings): Painter {
     val botright = surroundings.botright?.cellType
 
     return when {
-        right.isWaterOrNull && botright.isWaterOrNull && bot.isWaterOrNull -> BitmapPainter(imageResource(randomWaterPath()))
+        right.isWaterOrNull && botright.isWaterOrNull && bot.isWaterOrNull -> BitmapPainter(
+            imageResource(
+                randomWaterPath()
+            )
+        )
+
         right.isWater && bot.isWater && !botright.isWater -> BitmapPainter(imageResource("land/water/border/xxxo.png"))
         !bot.isWater -> BitmapPainter(imageResource("land/water/border/xxoo.png"))
         right.isWaterOrNull -> BitmapPainter(imageResource(randomWaterPath()))

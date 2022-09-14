@@ -1,14 +1,25 @@
 package app.view.map.model
 
-enum class CellType {
-    GROUND,
-    WATER,
-    SNOW,
-    SAND,
-    GRASS,
-    ASH,
-    STONES,
-    SWAMP
+private val defaultNames = listOf(
+    "000.png",
+    "001.png",
+    "002.png",
+    "003.png",
+    "004.png",
+    "005.png",
+)
+
+enum class CellType(val path: String) {
+    GROUND("ground"),
+    WATER("water"),
+    SNOW("snow"),
+    SAND("sand"),
+    GRASS("grass"),
+    ASH("ash"),
+    STONES("stones"),
+    SWAMP("swamp");
+
+    val defaultPath = "${path}/${defaultNames.random()}"
 }
 
 val CellType?.isWater: Boolean
@@ -16,24 +27,3 @@ val CellType?.isWater: Boolean
 
 val CellType?.isWaterOrNull: Boolean
     get() = this == CellType.WATER || this == null
-
-val CellType?.isGround: Boolean
-    get() = this == CellType.GROUND
-
-val CellType?.isSand: Boolean
-    get() = this == CellType.SAND
-
-val CellType?.isAsh: Boolean
-    get() = this == CellType.ASH
-
-val CellType?.isGrass: Boolean
-    get() = this == CellType.GRASS
-
-val CellType?.isSnow: Boolean
-    get() = this == CellType.SNOW
-
-val CellType?.isStones: Boolean
-    get() = this == CellType.STONES
-
-val CellType?.isSwamp: Boolean
-    get() = this == CellType.SWAMP

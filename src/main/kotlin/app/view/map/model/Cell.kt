@@ -2,9 +2,15 @@ package app.view.map.model
 
 import androidx.compose.ui.graphics.painter.Painter
 
+val grounds = listOf(
+    6, 7, 8,
+    11, 12, 13,
+    16, 17, 18
+)
+
 data class Cell(
     val index: Int,
-    val cellType: CellType = if (index in grounds) CellType.ASH else CellType.WATER,
+    val cellType: CellType = if (index in grounds) CellType.ASH else CellType.GROUND,
     val building: String = ""
 )
 
@@ -19,8 +25,6 @@ data class CellLand(
         return listOf(top1, top2, bot1, bot2)
     }
 }
-
-val grounds = listOf(6, 7, 8, 11, 12, 13, 16, 17, 18)
 
 data class CellSurroundings(
     val top: Cell? = null,

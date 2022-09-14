@@ -1,4 +1,4 @@
-package app.view.map.model
+package app.view.map.extension
 
 val buildings = listOf(
     "🛕",

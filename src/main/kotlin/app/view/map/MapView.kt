@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import app.extension.update
 import app.state.AppState
-import app.view.map.model.randomBuilding
+import app.view.map.extension.randomBuilding
 import app.view.map.state.Land
 import app.view.toast.state.showToast
 import kotlin.math.roundToInt
