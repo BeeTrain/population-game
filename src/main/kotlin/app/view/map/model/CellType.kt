@@ -34,3 +34,6 @@ val CellType?.isSnow: Boolean
 
 val CellType?.isStone: Boolean
     get() = this == CellType.STONES
+
+val CellType?.isSwamp: Boolean
+    get() = this == CellType.SWAMP
