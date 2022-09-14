@@ -95,6 +95,10 @@ private fun CellType.getTop1ResourcePath(surroundings: CellSurroundings): String
         surroundings.isTopLeft(CellType.SAND) -> Pattern.TOP_LEFT.getPath(CellType.SAND)
         surroundings.isTop(CellType.SAND) -> Pattern.TOP.getPath(CellType.SAND)
         surroundings.isLeft(CellType.SAND) -> Pattern.LEFT.getPath(CellType.SAND)
+
+        surroundings.isTopLeft(CellType.GROUND) -> Pattern.TOP_LEFT.getPath(CellType.GROUND)
+        surroundings.isTop(CellType.GROUND) -> Pattern.TOP.getPath(CellType.GROUND)
+        surroundings.isLeft(CellType.GROUND) -> Pattern.LEFT.getPath(CellType.GROUND)
         else -> ""
 
     }
@@ -116,6 +120,10 @@ private fun CellType.getTop2ResourcePath(surroundings: CellSurroundings): String
         surroundings.isTopRight(CellType.SAND) -> Pattern.TOP_RIGHT.getPath(CellType.SAND)
         surroundings.isTop(CellType.SAND) -> Pattern.TOP.getPath(CellType.SAND)
         surroundings.isRight(CellType.SAND) -> Pattern.RIGHT.getPath(CellType.SAND)
+
+        surroundings.isTopRight(CellType.GROUND) -> Pattern.TOP_RIGHT.getPath(CellType.GROUND)
+        surroundings.isTop(CellType.GROUND) -> Pattern.TOP.getPath(CellType.GROUND)
+        surroundings.isRight(CellType.GROUND) -> Pattern.RIGHT.getPath(CellType.GROUND)
         else -> ""
     }
     return if (pattern.isEmpty()) {
@@ -136,6 +144,10 @@ private fun CellType.getBot1ResourcePath(surroundings: CellSurroundings): String
         surroundings.isBotLeft(CellType.SAND) -> Pattern.BOT_LEFT.getPath(CellType.SAND)
         surroundings.isBot(CellType.SAND) -> Pattern.BOT.getPath(CellType.SAND)
         surroundings.isLeft(CellType.SAND) -> Pattern.LEFT.getPath(CellType.SAND)
+
+        surroundings.isBotLeft(CellType.GROUND) -> Pattern.BOT_LEFT.getPath(CellType.GROUND)
+        surroundings.isBot(CellType.GROUND) -> Pattern.BOT.getPath(CellType.GROUND)
+        surroundings.isLeft(CellType.GROUND) -> Pattern.LEFT.getPath(CellType.GROUND)
         else -> ""
     }
     return if (pattern.isEmpty()) {
@@ -156,6 +168,10 @@ private fun CellType.getBot2ResourcePath(surroundings: CellSurroundings): String
         surroundings.isBotRight(CellType.SAND) -> Pattern.BOT_RIGHT.getPath(CellType.SAND)
         surroundings.isBot(CellType.SAND) -> Pattern.BOT.getPath(CellType.SAND)
         surroundings.isRight(CellType.SAND) -> Pattern.RIGHT.getPath(CellType.SAND)
+
+        surroundings.isBotRight(CellType.GROUND) -> Pattern.BOT_RIGHT.getPath(CellType.GROUND)
+        surroundings.isBot(CellType.GROUND) -> Pattern.BOT.getPath(CellType.GROUND)
+        surroundings.isRight(CellType.GROUND) -> Pattern.RIGHT.getPath(CellType.GROUND)
         else -> ""
     }
     return if (pattern.isEmpty()) {

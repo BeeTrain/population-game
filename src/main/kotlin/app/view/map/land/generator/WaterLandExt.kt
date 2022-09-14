@@ -21,12 +21,14 @@ fun getWaterLand(surroundings: CellSurroundings): CellLand {
 }
 
 private fun getTop1Land(surroundings: CellSurroundings): Painter {
-    val left = surroundings.left?.cellType
     val top = surroundings.top?.cellType
+    val left = surroundings.left?.cellType
     val topleft = surroundings.topleft?.cellType
 
     return when {
         left.isWaterOrNull && topleft.isWaterOrNull && top.isWaterOrNull -> BitmapPainter(imageResource(randomWaterPath()))
+
+        !left.isWater && !top.isWater && !topleft.isWater -> BitmapPainter(imageResource("land/water/border/ooox.png"))
         left.isWater && top.isWater && !topleft.isWater -> BitmapPainter(imageResource("land/water/border/oxxx.png"))
         !top.isWater -> BitmapPainter(imageResource("land/water/border/ooxx.png"))
         left.isWaterOrNull -> BitmapPainter(imageResource(randomWaterPath()))
@@ -47,7 +49,8 @@ private fun getTop2Land(surroundings: CellSurroundings): Painter {
             )
         )
 
-        right.isWater && top.isWater && !topright.isWater -> BitmapPainter(imageResource("land/water/border/xoxx.png"))
+        !top.isWater && !right.isWater && !topright.isWater -> BitmapPainter(imageResource("land/water/border/ooxo.png"))
+        top.isWater && right.isWater && !topright.isWater -> BitmapPainter(imageResource("land/water/border/xoxx.png"))
         !top.isWater -> BitmapPainter(imageResource("land/water/border/ooxx.png"))
         right.isWaterOrNull -> BitmapPainter(imageResource(randomWaterPath()))
         !right.isWater -> BitmapPainter(imageResource("land/water/border/xoxo.png"))
@@ -62,7 +65,9 @@ private fun getBot1Land(surroundings: CellSurroundings): Painter {
 
     return when {
         left.isWaterOrNull && botleft.isWaterOrNull && bot.isWaterOrNull -> BitmapPainter(imageResource(randomWaterPath()))
-        left.isWater && bot.isWater && !botleft.isWater -> BitmapPainter(imageResource("land/water/border/xxox.png"))
+
+        !bot.isWater && !left.isWater && !botleft.isWater -> BitmapPainter(imageResource("land/water/border/oxoo.png"))
+        bot.isWater && left.isWater && !botleft.isWater -> BitmapPainter(imageResource("land/water/border/xxox.png"))
         !bot.isWater -> BitmapPainter(imageResource("land/water/border/xxoo.png"))
         left.isWaterOrNull -> BitmapPainter(imageResource(randomWaterPath()))
         !left.isWater -> BitmapPainter(imageResource("land/water/border/oxox.png"))
@@ -82,7 +87,8 @@ private fun getBot2Land(surroundings: CellSurroundings): Painter {
             )
         )
 
-        right.isWater && bot.isWater && !botright.isWater -> BitmapPainter(imageResource("land/water/border/xxxo.png"))
+        !bot.isWater && !right.isWater && !botright.isWater -> BitmapPainter(imageResource("land/water/border/xooo.png"))
+        bot.isWater && right.isWater && !botright.isWater -> BitmapPainter(imageResource("land/water/border/xxxo.png"))
         !bot.isWater -> BitmapPainter(imageResource("land/water/border/xxoo.png"))
         right.isWaterOrNull -> BitmapPainter(imageResource(randomWaterPath()))
         !right.isWater -> BitmapPainter(imageResource("land/water/border/xoxo.png"))

@@ -10,7 +10,7 @@ val grounds = listOf(
 
 data class Cell(
     val index: Int,
-    val cellType: CellType = if (index in grounds) CellType.ASH else CellType.GROUND,
+    val cellType: CellType = if (index in grounds) CellType.STONES else CellType.GROUND,
     val building: String = ""
 )
 
