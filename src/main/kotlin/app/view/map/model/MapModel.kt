@@ -5,6 +5,7 @@ import app.view.map.land.getAshLand
 import app.view.map.land.getGrassLand
 import app.view.map.land.getGroundLand
 import app.view.map.land.getSnowLand
+import app.view.map.land.getStoneLand
 import app.view.map.land.getWaterLand
 
 private const val PADDING = 0.2
@@ -46,6 +47,7 @@ data class MapModel(
             CellType.ASH -> getAshLand(surroundings)
             CellType.GRASS -> getGrassLand(surroundings)
             CellType.SNOW -> getSnowLand(surroundings)
+            CellType.STONES -> getStoneLand(surroundings)
             else -> CellLand(
                 top1 = cellImage(cell.cellType),
                 top2 = cellImage(cell.cellType),

@@ -31,3 +31,6 @@ val CellType?.isGrass: Boolean
 
 val CellType?.isSnow: Boolean
     get() = this == CellType.SNOW
+
+val CellType?.isStone: Boolean
+    get() = this == CellType.STONES
