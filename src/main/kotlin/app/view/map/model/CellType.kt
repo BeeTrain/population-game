@@ -1,14 +1,14 @@
 package app.view.map.model
 
-enum class CellType(val path: String) {
-    GROUND("land/ground/ground.png"),
-    WATER("land/water/water.png"),
-    SNOW("land/snow/snow.png"),
-    SAND("land/sand/sand.png"),
-    GRASS("land/grass/grass.png"),
-    ASH("land/ash/ash.png"),
-    STONES("land/stones/stones.png"),
-    SWAMP("land/swamp/swamp.png")
+enum class CellType {
+    GROUND,
+    WATER,
+    SNOW,
+    SAND,
+    GRASS,
+    ASH,
+    STONES,
+    SWAMP
 }
 
 val CellType?.isWater: Boolean
@@ -32,7 +32,7 @@ val CellType?.isGrass: Boolean
 val CellType?.isSnow: Boolean
     get() = this == CellType.SNOW
 
-val CellType?.isStone: Boolean
+val CellType?.isStones: Boolean
     get() = this == CellType.STONES
 
 val CellType?.isSwamp: Boolean

@@ -10,12 +10,12 @@ import app.view.map.model.isSwamp
 import app.view.map.model.isWater
 
 val swamp = listOf(
-    "land/swamp/tswb000.png",
-    "land/swamp/tswb001.png",
-    "land/swamp/tswb002.png",
-    "land/swamp/tswb003.png",
-    "land/swamp/tswb004.png",
-    "land/swamp/tswb005.png",
+    "land/swamp/000.png",
+    "land/swamp/001.png",
+    "land/swamp/002.png",
+    "land/swamp/003.png",
+    "land/swamp/004.png",
+    "land/swamp/005.png",
 )
 
 fun randomSwampPath(): String {
@@ -39,13 +39,13 @@ private fun getTop1Land(surroundings: CellSurroundings): Painter {
     return when {
         top.isSwamp && left.isSwamp -> BitmapPainter(imageResource(randomSwampPath()))
         // water
-        left.isWater && top.isWater -> BitmapPainter(imageResource("land/swamp/tosand/sssg.png"))
-        top.isWater -> BitmapPainter(imageResource("land/swamp/tosand/ssgg.png"))
-        left.isWater -> BitmapPainter(imageResource("land/swamp/tosand/sgsg.png"))
+        left.isWater && top.isWater -> BitmapPainter(imageResource("land/swamp/sand/ooox.png"))
+        top.isWater -> BitmapPainter(imageResource("land/swamp/sand/ooxx.png"))
+        left.isWater -> BitmapPainter(imageResource("land/swamp/sand/oxox.png"))
         //sand
-        left.isSand && top.isSand -> BitmapPainter(imageResource("land/swamp/tosand/sssg.png"))
-        top.isSand -> BitmapPainter(imageResource("land/swamp/tosand/ssgg.png"))
-        left.isSand -> BitmapPainter(imageResource("land/swamp/tosand/sgsg.png"))
+        left.isSand && top.isSand -> BitmapPainter(imageResource("land/swamp/sand/ooox.png"))
+        top.isSand -> BitmapPainter(imageResource("land/swamp/sand/ooxx.png"))
+        left.isSand -> BitmapPainter(imageResource("land/swamp/sand/oxox.png"))
         else -> BitmapPainter(imageResource(randomGroundPath()))
     }
 }
@@ -58,13 +58,13 @@ private fun getTop2Land(surroundings: CellSurroundings): Painter {
     return when {
         top.isSwamp && right.isSwamp -> BitmapPainter(imageResource(randomSwampPath()))
         // water
-        right.isWater && top.isWater -> BitmapPainter(imageResource("land/swamp/tosand/ssgs.png"))
-        top.isWater -> BitmapPainter(imageResource("land/swamp/tosand/ssgg.png"))
-        right.isWater -> BitmapPainter(imageResource("land/swamp/tosand/gsgs.png"))
+        right.isWater && top.isWater -> BitmapPainter(imageResource("land/swamp/sand/ooxo.png"))
+        top.isWater -> BitmapPainter(imageResource("land/swamp/sand/ooxx.png"))
+        right.isWater -> BitmapPainter(imageResource("land/swamp/sand/xoxo.png"))
         // sand
-        right.isSand && top.isSand -> BitmapPainter(imageResource("land/swamp/tosand/ssgs.png"))
-        top.isSand -> BitmapPainter(imageResource("land/swamp/tosand/ssgg.png"))
-        right.isSand -> BitmapPainter(imageResource("land/swamp/tosand/gsgs.png"))
+        right.isSand && top.isSand -> BitmapPainter(imageResource("land/swamp/sand/ooxo.png"))
+        top.isSand -> BitmapPainter(imageResource("land/swamp/sand/ooxx.png"))
+        right.isSand -> BitmapPainter(imageResource("land/swamp/sand/xoxo.png"))
         else -> BitmapPainter(imageResource(randomGroundPath()))
     }
 }
@@ -77,13 +77,13 @@ private fun getBot1Land(surroundings: CellSurroundings): Painter {
     return when {
         bot.isSwamp && left.isSwamp -> BitmapPainter(imageResource(randomSwampPath()))
         // water
-        left.isWater && bot.isWater -> BitmapPainter(imageResource("land/swamp/tosand/sgss.png"))
-        bot.isWater -> BitmapPainter(imageResource("land/swamp/tosand/ggss.png"))
-        left.isWater -> BitmapPainter(imageResource("land/swamp/tosand/sgsg.png"))
+        left.isWater && bot.isWater -> BitmapPainter(imageResource("land/swamp/sand/oxoo.png"))
+        bot.isWater -> BitmapPainter(imageResource("land/swamp/sand/xxoo.png"))
+        left.isWater -> BitmapPainter(imageResource("land/swamp/sand/oxox.png"))
         // sand
-        left.isSand && bot.isSand -> BitmapPainter(imageResource("land/swamp/tosand/sgss.png"))
-        bot.isSand -> BitmapPainter(imageResource("land/swamp/tosand/ggss.png"))
-        left.isSand -> BitmapPainter(imageResource("land/swamp/tosand/sgsg.png"))
+        left.isSand && bot.isSand -> BitmapPainter(imageResource("land/swamp/sand/oxoo.png"))
+        bot.isSand -> BitmapPainter(imageResource("land/swamp/sand/xxoo.png"))
+        left.isSand -> BitmapPainter(imageResource("land/swamp/sand/oxox.png"))
         else -> BitmapPainter(imageResource(randomSwampPath()))
     }
 }
@@ -96,13 +96,13 @@ private fun getBot2Land(surroundings: CellSurroundings): Painter {
     return when {
         bot.isSwamp && right.isSwamp -> BitmapPainter(imageResource(randomSwampPath()))
         // water
-        right.isWater && bot.isWater -> BitmapPainter(imageResource("land/swamp/tosand/gsss.png"))
-        bot.isWater -> BitmapPainter(imageResource("land/swamp/tosand/ggss.png"))
-        right.isWater -> BitmapPainter(imageResource("land/swamp/tosand/gsgs.png"))
+        right.isWater && bot.isWater -> BitmapPainter(imageResource("land/swamp/sand/xooo.png"))
+        bot.isWater -> BitmapPainter(imageResource("land/swamp/sand/xxoo.png"))
+        right.isWater -> BitmapPainter(imageResource("land/swamp/sand/xoxo.png"))
         // sand
-        right.isSand && bot.isSand -> BitmapPainter(imageResource("land/swamp/tosand/gsss.png"))
-        bot.isSand -> BitmapPainter(imageResource("land/swamp/tosand/ggss.png"))
-        right.isSand -> BitmapPainter(imageResource("land/swamp/tosand/gsgs.png"))
+        right.isSand && bot.isSand -> BitmapPainter(imageResource("land/swamp/sand/xooo.png"))
+        bot.isSand -> BitmapPainter(imageResource("land/swamp/sand/xxoo.png"))
+        right.isSand -> BitmapPainter(imageResource("land/swamp/sand/xoxo.png"))
         else -> BitmapPainter(imageResource(randomSwampPath()))
     }
 }
