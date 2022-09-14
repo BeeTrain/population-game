@@ -2,6 +2,7 @@ package app.view.map.model
 
 import app.view.map.extension.cellImage
 import app.view.map.land.getAshLand
+import app.view.map.land.getGrassLand
 import app.view.map.land.getGroundLand
 import app.view.map.land.getWaterLand
 
@@ -42,6 +43,7 @@ data class MapModel(
             CellType.GROUND -> getGroundLand(surroundings)
             CellType.WATER -> getWaterLand(surroundings)
             CellType.ASH -> getAshLand(surroundings)
+            CellType.GRASS -> getGrassLand(surroundings)
             else -> CellLand(
                 top1 = cellImage(cell.cellType),
                 top2 = cellImage(cell.cellType),
