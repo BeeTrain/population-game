@@ -4,7 +4,7 @@ import androidx.compose.ui.graphics.painter.Painter
 
 data class Cell(
     val index: Int,
-    val cellType: CellType = if (index in grounds) CellType.ASH else CellType.WATER,
+    val cellType: CellType = if (index in grounds) CellType.GRASS else CellType.WATER,
     val building: String = ""
 )
 
