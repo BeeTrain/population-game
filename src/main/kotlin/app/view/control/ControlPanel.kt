@@ -50,7 +50,6 @@ fun BoxScope.ControlPanel() {
 
 private fun onRestartClick(): () -> Unit = {
     AppState.game.restartGame()
-    AppState.mapViewState.recreateMap()
 }
 
 private fun onRunCycleClick(): () -> Unit = {

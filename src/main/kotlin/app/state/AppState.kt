@@ -3,7 +3,6 @@ package app.state
 import app.view.control.state.ControlPanelState
 import app.view.gameinfo.state.GameInfoPanelState
 import app.view.info.state.InfoWindowState
-import app.view.map.state.MapViewState
 import app.view.toast.state.ToastState
 
 object AppState {
@@ -12,6 +11,5 @@ object AppState {
     val infoWindow = InfoWindowState()
     val gameInfoPanelState = GameInfoPanelState()
     val controlPanelState = ControlPanelState()
-    val mapViewState = MapViewState()
     val toast = ToastState()
 }

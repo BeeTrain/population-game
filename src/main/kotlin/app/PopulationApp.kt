@@ -12,6 +12,7 @@ import app.config.theme.colors
 import app.view.control.ControlPanel
 import app.view.gameinfo.GameInfoPanel
 import app.view.info.InfoWindow
+import app.view.map.BuildingsView
 import app.view.map.MapView
 import app.view.toast.Toast
 
@@ -27,6 +28,8 @@ fun PopulationApp() {
                 .background(Color.Black)
         ) {
             MapView()
+            BuildingsView()
+
             InfoWindow()
             ControlPanel()
             GameInfoPanel()
