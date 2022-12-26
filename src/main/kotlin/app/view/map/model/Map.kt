@@ -14,7 +14,7 @@ private const val DEFAULT_CELL_SIZE = 35
 private const val CELL_PADDING = 0.2
 
 class Map(
-    val cellsWidth: Int = MAP_SIZE_M,
+    val cellsWidth: Int = MAP_SIZE_S,
     val cellsHeight: Int = cellsWidth,
     val cellSize: Int = DEFAULT_CELL_SIZE,
     val cells: List<Cell> = createMapCells(cellsWidth, cellsHeight),
@@ -44,15 +44,36 @@ class Map(
         } else {
             index + 1
         }
+        val topLeftIndex = if (leftIndex == -1) {
+            -1
+        } else {
+            index - width - 1
+        }
+        val topRightIndex = if (rightIndex == -1) {
+            -1
+        } else {
+            index - width + 1
+        }
+        val botLeftIndex = if (leftIndex == -1) {
+            -1
+        } else {
+            index + width - 1
+        }
+        val botRightIndex = if (rightIndex == -1) {
+            -1
+        } else {
+            index + width + 1
+        }
+
         return CellSurroundings(
             top = getCell(index - width),
             bot = getCell(index + width),
             left = getCell(leftIndex),
             right = getCell(rightIndex),
-            topleft = getCell(index - width - 1),
-            topright = getCell(index - width + 1),
-            botleft = getCell(index + width - 1),
-            botright = getCell(index + width + 1),
+            topleft = getCell(topLeftIndex),
+            topright = getCell(topRightIndex),
+            botleft = getCell(botLeftIndex),
+            botright = getCell(botRightIndex),
         )
     }
 

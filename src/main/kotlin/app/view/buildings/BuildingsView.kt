@@ -1,4 +1,4 @@
-package app.view.map
+package app.view.buildings
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
@@ -44,8 +44,8 @@ fun BoxScope.BuildingsView() {
             .pointerInput(state) {
                 detectDragGestures { change, dragAmount ->
                     change.consumeAllChanges()
-                    state.offsetX.update { state.offsetX.value + dragAmount.x }
-                    state.offsetY.update { state.offsetY.value + dragAmount.y }
+                    state.offsetX.update { it + dragAmount.x }
+                    state.offsetY.update { it + dragAmount.y }
                 }
             }
     ) {

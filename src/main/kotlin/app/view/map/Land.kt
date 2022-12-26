@@ -1,4 +1,4 @@
-package app.view.map.state
+package app.view.map
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
@@ -17,7 +17,7 @@ fun Land(cellLand: CellLand) {
         items(cellLand.toList()) {
             Image(
                 painter = it,
-                contentDescription = "",
+                contentDescription = null,
             )
         }
     }

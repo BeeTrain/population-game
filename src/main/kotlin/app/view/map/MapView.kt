@@ -21,7 +21,6 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import app.extension.update
 import app.state.AppState
-import app.view.map.state.Land
 import kotlin.math.roundToInt
 
 @Composable
@@ -37,9 +36,8 @@ fun BoxScope.MapView() {
             .pointerInput(state) {
                 detectDragGestures { change, dragAmount ->
                     change.consumeAllChanges()
-                    state.offsetX.update { state.offsetX.value + dragAmount.x }
-                    state.offsetY.update { state.offsetY.value + dragAmount.y }
-                    println("${state.offsetX.value}, ${state.offsetY.value}")
+                    state.offsetX.update { it + dragAmount.x }
+                    state.offsetY.update { it + dragAmount.y }
                 }
             }
     ) {
@@ -47,10 +45,11 @@ fun BoxScope.MapView() {
         itemsIndexed(rows) { rowIndex, row ->
             LazyRow {
                 itemsIndexed(items = row) { cellIndex, cell ->
+                    val listIndex = rowIndex * state.cellsWidth + cellIndex
                     Box(
                         modifier = Modifier
                             .size(state.cellSize.dp),
-                        content = { Land(state.getLand(cellIndex, cell)) }
+                        content = { Land(state.getLand(listIndex, cell)) }
                     )
                 }
             }
