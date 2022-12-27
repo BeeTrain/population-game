@@ -33,14 +33,19 @@ private const val xxxo = "land/water/border/xxxo.png"
 
 fun generateWaterCellLand(surroundings: CellSurroundings): CellLand {
     return CellLand(
-        top1 = surroundings.getTop1Land(),
-        top2 = surroundings.getTop2Land(),
-        bot1 = surroundings.getBot1Land(),
-        bot2 = surroundings.getBot2Land()
+        top1 = surroundings.getTop1Water(),
+        top2 = surroundings.getTop2Water(),
+        top3 = surroundings.getTop3Water(),
+        mid1 = surroundings.getMid1Water(),
+        mid2 = surroundings.getMid2Water(),
+        mid3 = surroundings.getMid3Water(),
+        bot1 = surroundings.getBot1Water(),
+        bot2 = surroundings.getBot2Water(),
+        bot3 = surroundings.getBot3Water()
     )
 }
 
-private fun CellSurroundings.getTop1Land(): Painter {
+private fun CellSurroundings.getTop1Water(): Painter {
     val shouldUseRandom = left.isWaterOrNull && topleft.isWaterOrNull && top.isWaterOrNull
     return when {
         shouldUseRandom -> BitmapPainter(imageResource(randomWaterPath()))
@@ -56,7 +61,14 @@ private fun CellSurroundings.getTop1Land(): Painter {
     }
 }
 
-private fun CellSurroundings.getTop2Land(): Painter {
+private fun CellSurroundings.getTop2Water(): Painter {
+    return when {
+        top.isWaterOrNull -> BitmapPainter(imageResource(randomWaterPath()))
+        else -> BitmapPainter(imageResource(ooxx))
+    }
+}
+
+private fun CellSurroundings.getTop3Water(): Painter {
     val shouldUseRandom = right.isWaterOrNull && topright.isWaterOrNull && top.isWaterOrNull
     return when {
         shouldUseRandom -> BitmapPainter(imageResource(randomWaterPath()))
@@ -72,7 +84,25 @@ private fun CellSurroundings.getTop2Land(): Painter {
     }
 }
 
-private fun CellSurroundings.getBot1Land(): Painter {
+private fun CellSurroundings.getMid1Water(): Painter {
+    return when {
+        left.isWaterOrNull -> BitmapPainter(imageResource(randomWaterPath()))
+        else -> BitmapPainter(imageResource(oxox))
+    }
+}
+
+private fun CellSurroundings.getMid2Water(): Painter {
+    return BitmapPainter(imageResource(randomWaterPath()))
+}
+
+private fun CellSurroundings.getMid3Water(): Painter {
+    return when {
+        right.isWaterOrNull -> BitmapPainter(imageResource(randomWaterPath()))
+        else -> BitmapPainter(imageResource(xoxo))
+    }
+}
+
+private fun CellSurroundings.getBot1Water(): Painter {
     val shouldUseRandom = left.isWaterOrNull && botleft.isWaterOrNull && bot.isWaterOrNull
     return when {
         shouldUseRandom -> BitmapPainter(imageResource(randomWaterPath()))
@@ -88,7 +118,14 @@ private fun CellSurroundings.getBot1Land(): Painter {
     }
 }
 
-private fun CellSurroundings.getBot2Land(): Painter {
+private fun CellSurroundings.getBot2Water(): Painter {
+    return when {
+        bot.isWaterOrNull -> BitmapPainter(imageResource(randomWaterPath()))
+        else -> BitmapPainter(imageResource(xxoo))
+    }
+}
+
+private fun CellSurroundings.getBot3Water(): Painter {
     val shouldUseRandom = right.isWaterOrNull && botright.isWaterOrNull && bot.isWaterOrNull
     return when {
         shouldUseRandom -> BitmapPainter(imageResource(randomWaterPath()))

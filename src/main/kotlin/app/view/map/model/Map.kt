@@ -10,7 +10,7 @@ private const val MAP_SIZE_S = 10
 private const val MAP_SIZE_M = 20
 private const val MAP_SIZE_L = 30
 
-private const val DEFAULT_CELL_SIZE = 35
+private const val DEFAULT_CELL_SIZE = 36
 private const val CELL_PADDING = 0.2
 
 class Map(

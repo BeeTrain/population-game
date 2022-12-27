@@ -12,7 +12,7 @@ import app.view.map.model.CellLand
 @Composable
 fun Land(cellLand: CellLand) {
     LazyVerticalGrid(
-        cells = GridCells.Fixed(2)
+        cells = GridCells.Fixed(3)
     ) {
         items(cellLand.toList()) {
             Image(

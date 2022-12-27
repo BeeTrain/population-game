@@ -1,6 +1,7 @@
 package app.view.map.model
 
 import androidx.compose.ui.graphics.painter.Painter
+import app.extension.random
 
 private val defaultNames = listOf(
     "000.png",
@@ -13,6 +14,7 @@ private val defaultNames = listOf(
 
 enum class Cell(val path: String) {
     WATER("water"),
+    SAND("sand"),
     GROUND("ground"),
     GRASS("grass");
 
@@ -24,7 +26,7 @@ fun createMapCells(
     height: Int
 ): List<Cell> {
     return List(width * height) {
-        Cell.values().random()
+        random(Cell.WATER, Cell.GRASS)
     }
 }
 
@@ -42,11 +44,20 @@ data class CellSurroundings(
 data class CellLand(
     val top1: Painter,
     val top2: Painter,
+    val top3: Painter,
+    val mid1: Painter,
+    val mid2: Painter,
+    val mid3: Painter,
     val bot1: Painter,
-    val bot2: Painter
+    val bot2: Painter,
+    val bot3: Painter,
 ) {
 
     fun toList(): List<Painter> {
-        return listOf(top1, top2, bot1, bot2)
+        return listOf(
+            top1, top2, top3,
+            mid1, mid2, mid3,
+            bot1, bot2, bot3
+        )
     }
 }
