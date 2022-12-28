@@ -3,6 +3,9 @@ package app.view.map.model
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.unit.IntSize
+import app.model.map.FourIslands
+import app.model.map.RandomMap
+import app.model.map.TwoIslands
 import app.view.map.model.extension.NO_BUILDING
 import app.view.map.model.extension.cellLand
 
@@ -14,10 +17,10 @@ private const val DEFAULT_CELL_SIZE = 36
 private const val CELL_PADDING = 0.2
 
 class Map(
-    val cellsWidth: Int = MAP_SIZE_S,
+    val cellsWidth: Int = MapSizeRandomizer.getSize(),
     val cellsHeight: Int = cellsWidth,
     val cellSize: Int = DEFAULT_CELL_SIZE,
-    val cells: List<Cell> = createMapCells(cellsWidth, cellsHeight),
+    val cells: List<Cell> = MapRandomizer.getMap(cellsWidth, cellsHeight),
     val buildings: MutableState<List<String>> = mutableStateOf(createMapBuildings(cells))
 ) {
 
@@ -93,4 +96,26 @@ class Map(
 
 private fun createMapBuildings(cells: List<Cell>): List<String> {
     return List(cells.size) { NO_BUILDING }
+}
+
+object MapSizeRandomizer {
+
+    fun getSize(): Int {
+        return listOf(
+            MAP_SIZE_S,
+//            MAP_SIZE_M,
+//            MAP_SIZE_L,
+        ).random()
+    }
+}
+
+object MapRandomizer {
+
+    fun getMap(width: Int, height: Int): List<Cell> {
+        return listOf(
+            RandomMap(width, height).generate(),
+            TwoIslands(width, height).generate(),
+            FourIslands(width, height).generate(),
+        ).random()
+    }
 }

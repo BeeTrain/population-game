@@ -1,7 +1,6 @@
 package app.view.map.model
 
 import androidx.compose.ui.graphics.painter.Painter
-import app.extension.random
 
 private val defaultNames = listOf(
     "000.png",
@@ -19,15 +18,6 @@ enum class Cell(val path: String) {
     GRASS("grass");
 
     fun defaultPath() = "${path}/${defaultNames.random()}"
-}
-
-fun createMapCells(
-    width: Int,
-    height: Int
-): List<Cell> {
-    return List(width * height) {
-        random(Cell.WATER, Cell.GRASS)
-    }
 }
 
 data class CellSurroundings(
