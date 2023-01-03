@@ -14,6 +14,7 @@ import app.view.gameinfo.GameInfoPanel
 import app.view.info.InfoWindow
 import app.view.buildings.BuildingsView
 import app.view.map.MapView
+import app.view.settings.SettingsView
 import app.view.toast.Toast
 
 @Composable
@@ -33,6 +34,8 @@ fun PopulationApp() {
             InfoWindow()
             ControlPanel()
             GameInfoPanel()
+
+            SettingsView()
             Toast()
         }
     }

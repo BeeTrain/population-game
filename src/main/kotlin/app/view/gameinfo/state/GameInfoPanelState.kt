@@ -5,5 +5,5 @@ import androidx.compose.ui.unit.IntSize
 
 class GameInfoPanelState {
 
-    var size = mutableStateOf(IntSize(0, 0))
+    val size = mutableStateOf(IntSize(0, 0))
 }

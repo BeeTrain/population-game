@@ -19,7 +19,8 @@ import app.extension.nonClickable
 import app.extension.update
 import app.model.lifecycle.PopulationStatus
 import app.state.AppState
-import app.view.control.resources.ControlPanelStrings
+import app.view.control.resources.ControlPanelResources
+import app.view.toast.state.showToast
 
 @Composable
 fun BoxScope.ControlPanel() {
@@ -37,12 +38,16 @@ fun BoxScope.ControlPanel() {
             .nonClickable()
     ) {
         ControlButton(
-            title = ControlPanelStrings.runCycleTitle,
+            title = ControlPanelResources.runCycleTitle,
             visibility = lifecycleStatus.population != PopulationStatus.Extinction,
             onClick = onRunCycleClick(),
         )
         ControlButton(
-            title = ControlPanelStrings.restartTitle,
+            title = ControlPanelResources.settingsTitle,
+            onClick = onSettingsClick()
+        )
+        ControlButton(
+            title = ControlPanelResources.restartTitle,
             onClick = onRestartClick()
         )
     }
@@ -54,4 +59,9 @@ private fun onRestartClick(): () -> Unit = {
 
 private fun onRunCycleClick(): () -> Unit = {
     AppState.game.runCycle()
+}
+
+private fun onSettingsClick(): () -> Unit = {
+    AppState.settings.isVisible.update { true }
+    showToast("Settings clicked")
 }

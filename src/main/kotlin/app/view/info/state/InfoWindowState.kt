@@ -5,8 +5,8 @@ import app.extension.update
 
 class InfoWindowState {
 
-    var isVisible = mutableStateOf(true)
-    var text = mutableStateOf("")
+    val isVisible = mutableStateOf(true)
+    val text = mutableStateOf("")
 
     fun toggleIconClick() {
         isVisible.update { it.not() }

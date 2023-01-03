@@ -10,8 +10,8 @@ private const val DEFAULT_DURATION = 1000L
 
 class ToastState {
 
-    var isVisible = mutableStateOf(false)
-    var text = mutableStateOf("")
+    val isVisible = mutableStateOf(false)
+    val text = mutableStateOf("")
 
     fun show(message: String, millis: Long = DEFAULT_DURATION) {
         text.update { message }

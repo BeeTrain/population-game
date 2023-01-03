@@ -1,0 +1,60 @@
+package app.view.settings
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.Card
+import androidx.compose.material.Icon
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import app.extension.nonClickable
+import app.extension.update
+import app.extension.visibility
+import app.state.AppState
+import app.view.info.resources.InfoWindowIcons
+
+@Composable
+fun BoxScope.SettingsView() {
+    val isVisible by remember { AppState.settings.isVisible }
+
+    if (isVisible.not()) return
+
+    Box(
+        modifier = Modifier
+            .visibility(isVisible)
+            .fillMaxSize()
+            .background(Color.Black.copy(alpha = 0.5f))
+            .nonClickable()
+    ) {
+        Card(
+            modifier = Modifier
+                .size(400.dp, 350.dp)
+                .align(Alignment.Center)
+        ) {
+            Column {
+                Icon(
+                    imageVector = InfoWindowIcons.closeIcon,
+                    contentDescription = null,
+                    modifier = Modifier.padding(4.dp)
+                        .align(Alignment.End)
+                        .size(16.dp)
+                        .clickable { onCloseIconClick() }
+                )
+            }
+        }
+    }
+}
+
+private fun onCloseIconClick() {
+    AppState.settings.isVisible.update { false }
+}

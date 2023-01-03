@@ -9,8 +9,7 @@ class GameState {
     var lifecycle = PopulationLifecycle()
         private set
 
-    var mapState = mutableStateOf(Map())
-        private set
+    val mapState = mutableStateOf(Map())
 
     val lifecycleStatusState = mutableStateOf(lifecycle.getLifecycleStatus())
 
