@@ -9,13 +9,13 @@ class GameState {
     var lifecycle = PopulationLifecycle()
         private set
 
-    val mapState = mutableStateOf(Map())
+    val mapState = mutableStateOf(createMap())
 
     val lifecycleStatusState = mutableStateOf(lifecycle.getLifecycleStatus())
 
     fun restartGame() {
         lifecycle = PopulationLifecycle()
-        mapState.update { Map() }
+        mapState.update { createMap() }
 
         updateStates()
         AppState.infoWindow.clearLog()
@@ -28,5 +28,11 @@ class GameState {
 
     private fun updateStates() {
         lifecycleStatusState.update { lifecycle.getLifecycleStatus() }
+    }
+
+    private fun createMap(): Map {
+        return Map(
+            cellsWidth = AppState.settings.mapSize.value.cells
+        )
     }
 }

@@ -5,7 +5,10 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Card
@@ -22,6 +25,7 @@ import app.extension.update
 import app.extension.visibility
 import app.state.AppState
 import app.view.info.resources.InfoWindowIcons
+import app.view.settings.map.MapSizeRow
 
 @Composable
 fun BoxScope.SettingsView() {
@@ -37,21 +41,33 @@ fun BoxScope.SettingsView() {
             .nonClickable()
     ) {
         Card(
+            backgroundColor = Color.LightGray,
             modifier = Modifier
                 .size(400.dp, 350.dp)
                 .align(Alignment.Center)
         ) {
             Column {
-                Icon(
-                    imageVector = InfoWindowIcons.closeIcon,
-                    contentDescription = null,
-                    modifier = Modifier.padding(4.dp)
-                        .align(Alignment.End)
-                        .size(16.dp)
-                        .clickable { onCloseIconClick() }
-                )
+                SettingsHeader()
+                MapSizeRow()
             }
         }
+    }
+}
+
+@Composable
+private fun SettingsHeader() {
+    Row(
+        modifier = Modifier
+            .padding(8.dp)
+    ) {
+        Spacer(Modifier.weight(1f).fillMaxWidth())
+        Icon(
+            imageVector = InfoWindowIcons.closeIcon,
+            contentDescription = null,
+            modifier = Modifier
+                .size(16.dp)
+                .clickable { onCloseIconClick() }
+        )
     }
 }
 
