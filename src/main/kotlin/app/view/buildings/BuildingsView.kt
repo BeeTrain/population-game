@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.sp
 import app.extension.update
 import app.state.AppState
 import app.view.map.model.extension.randomBuilding
+import app.view.map.model.generator.isWaterOrNull
 import app.view.toast.state.showToast
 import kotlin.math.roundToInt
 
@@ -52,17 +53,22 @@ fun BoxScope.BuildingsView() {
         val rows = buildings.chunked(state.cellsWidth)
         itemsIndexed(rows) { rowIndex, row ->
             LazyRow {
-                itemsIndexed(items = row) { cellIndex, cell ->
+                itemsIndexed(items = row) { cellIndex, _ ->
                     val listIndex = rowIndex * state.cellsWidth + cellIndex
                     state.buildingsKeys[listIndex] = buildings[listIndex]
                     key(state.buildingsKeys[listIndex]) {
-                        Box(
-                            modifier = Modifier
-                                .size(state.cellSize.dp)
-                                .clickable {
+                        val cell = state.getCell(listIndex)
+                        val clickableModifier = if (cell.isWaterOrNull.not()) {
+                            Modifier.clickable {
                                     state.buildingsKeys[listIndex]?.update { randomBuilding() }
                                     showToast("[${rowIndex + 1}, ${cellIndex + 1}]")
                                 }
+                        } else {
+                            Modifier
+                        }
+                        Box(
+                            modifier = clickableModifier
+                                .size(state.cellSize.dp)
                         ) {
                             if (state.buildingsKeys[listIndex]?.value?.isNotEmpty() == true) {
                                 Text(
