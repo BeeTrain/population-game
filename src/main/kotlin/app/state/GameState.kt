@@ -13,6 +13,8 @@ class GameState {
 
     val lifecycleStatusState = mutableStateOf(lifecycle.getLifecycleStatus())
 
+    val isBuildMode = mutableStateOf(false)
+
     fun restartGame() {
         lifecycle = PopulationLifecycle()
         mapState.update { createMap() }

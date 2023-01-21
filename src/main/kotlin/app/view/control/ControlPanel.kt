@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -26,6 +27,7 @@ import app.view.toast.state.showToast
 fun BoxScope.ControlPanel() {
     val state = AppState.controlPanelState
     val lifecycleStatus by remember { AppState.game.lifecycleStatusState }
+    val buildModeButtonColor = if (AppState.game.isBuildMode.value) ThemeColors.surface else ThemeColors.primary
 
     Column(
         verticalArrangement = Arrangement.Center,
@@ -43,6 +45,11 @@ fun BoxScope.ControlPanel() {
             onClick = onRunCycleClick(),
         )
         ControlButton(
+            colors = ButtonDefaults.buttonColors(backgroundColor = buildModeButtonColor),
+            title = ControlPanelResources.buildModeTitle,
+            onClick = onBuildClick()
+        )
+        ControlButton(
             title = ControlPanelResources.settingsTitle,
             onClick = onSettingsClick()
         )
@@ -53,12 +60,22 @@ fun BoxScope.ControlPanel() {
     }
 }
 
-private fun onRestartClick(): () -> Unit = {
-    AppState.game.restartGame()
-}
-
 private fun onRunCycleClick(): () -> Unit = {
     AppState.game.runCycle()
+}
+
+private fun onBuildClick(): () -> Unit = {
+    AppState.game.isBuildMode.update { it.not() }
+    val value = if (AppState.game.isBuildMode.value) {
+        "enabled"
+    } else {
+        "disabled"
+    }
+    showToast("Build mode ${value}")
+}
+
+private fun onRestartClick(): () -> Unit = {
+    AppState.game.restartGame()
 }
 
 private fun onSettingsClick(): () -> Unit = {

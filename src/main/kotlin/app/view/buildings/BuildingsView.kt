@@ -34,6 +34,7 @@ import kotlin.math.roundToInt
 @Composable
 fun BoxScope.BuildingsView() {
     val state by remember { AppState.game.mapState }
+    val isBuildMode by remember { AppState.game.isBuildMode }
     val buildings = state.buildings.value.map { mutableStateOf(it) }
 
     LazyColumn(
@@ -58,7 +59,7 @@ fun BoxScope.BuildingsView() {
                     state.buildingsKeys[listIndex] = buildings[listIndex]
                     key(state.buildingsKeys[listIndex]) {
                         val cell = state.getCell(listIndex)
-                        val clickableModifier = if (cell.isWaterOrNull.not()) {
+                        val clickableModifier = if (cell.isWaterOrNull.not() && isBuildMode) {
                             Modifier.clickable {
                                     state.buildingsKeys[listIndex]?.update { randomBuilding() }
                                     showToast("[${rowIndex + 1}, ${cellIndex + 1}]")
