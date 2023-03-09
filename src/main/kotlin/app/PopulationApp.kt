@@ -9,12 +9,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import app.config.theme.colors
+import app.view.buildings.BuildingSelector
 import app.view.control.ControlPanel
 import app.view.gameinfo.GameInfoPanel
 import app.view.info.InfoWindow
-import app.view.buildings.BuildingsView
-import app.view.map.MapView
-import app.view.settings.SettingsView
+import app.view.map.buildings.BuildingsMap
+import app.view.map.land.LandsMap
+import app.view.settings.GameSettings
 import app.view.toast.Toast
 
 @Composable
@@ -28,14 +29,15 @@ fun PopulationApp() {
                 .fillMaxSize()
                 .background(Color.Black)
         ) {
-            MapView()
-            BuildingsView()
+            LandsMap()
+            BuildingsMap()
 
             InfoWindow()
             ControlPanel()
             GameInfoPanel()
 
-            SettingsView()
+            GameSettings()
+            BuildingSelector()
             Toast()
         }
     }

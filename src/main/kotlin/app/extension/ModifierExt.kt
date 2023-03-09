@@ -9,7 +9,8 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.input.pointer.pointerMoveFilter
+import androidx.compose.ui.input.pointer.PointerEventType
+import androidx.compose.ui.input.pointer.onPointerEvent
 
 @Stable
 fun Modifier.visibility(
@@ -21,10 +22,8 @@ fun Modifier.onHover(hasHover: (Boolean) -> Unit): Modifier = composed {
     val isHover = remember { mutableStateOf(false) }
     hasHover.invoke(isHover.value)
 
-    pointerMoveFilter(
-        onEnter = { isHover.value = true; true },
-        onExit = { isHover.value = false; true }
-    )
+    onPointerEvent(PointerEventType.Enter) { isHover.value = true }
+        .onPointerEvent(PointerEventType.Exit) { isHover.value = false }
 }
 
 fun Modifier.nonClickable() = clickable(

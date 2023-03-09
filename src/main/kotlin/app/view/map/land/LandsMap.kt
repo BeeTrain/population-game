@@ -1,4 +1,4 @@
-package app.view.map
+package app.view.map.land
 
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Box
@@ -24,7 +24,7 @@ import app.state.AppState
 import kotlin.math.roundToInt
 
 @Composable
-fun BoxScope.MapView() {
+fun BoxScope.LandsMap() {
     val state by remember { AppState.game.mapState }
 
     LazyColumn(
@@ -35,7 +35,7 @@ fun BoxScope.MapView() {
             .onGloballyPositioned { coordinates -> state.size.update { coordinates.size } }
             .pointerInput(state) {
                 detectDragGestures { change, dragAmount ->
-                    change.consumeAllChanges()
+                    change.consume()
                     state.offsetX.update { it + dragAmount.x }
                     state.offsetY.update { it + dragAmount.y }
                 }

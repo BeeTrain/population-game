@@ -1,16 +1,8 @@
-package app.view.settings
+package app.view.buildings
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxScope
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
@@ -24,12 +16,11 @@ import app.extension.nonClickable
 import app.extension.update
 import app.extension.visibility
 import app.state.AppState
-import app.view.info.resources.InfoWindowIcons
-import app.view.settings.map.MapSizeRow
+import app.view.buildings.resources.BuildingsSelectorResources
 
 @Composable
-fun BoxScope.SettingsView() {
-    val isVisible by remember { AppState.settings.isVisible }
+fun BoxScope.BuildingSelector() {
+    val isVisible by remember { AppState.buildingsSelector.isVisible }
 
     if (isVisible.not()) return
 
@@ -47,22 +38,23 @@ fun BoxScope.SettingsView() {
                 .align(Alignment.Center)
         ) {
             Column {
-                SettingsHeader()
-                MapSizeRow()
+                BuildingsSelectorHeader()
+                BuildingsGrid()
             }
         }
     }
 }
 
+
 @Composable
-private fun SettingsHeader() {
+private fun BuildingsSelectorHeader() {
     Row(
         modifier = Modifier
             .padding(8.dp)
     ) {
         Spacer(Modifier.weight(1f).fillMaxWidth())
         Icon(
-            imageVector = InfoWindowIcons.closeIcon,
+            imageVector = BuildingsSelectorResources.closeIcon,
             contentDescription = null,
             modifier = Modifier
                 .size(16.dp)
@@ -72,5 +64,5 @@ private fun SettingsHeader() {
 }
 
 private fun onCloseIconClick() {
-    AppState.settings.isVisible.update { false }
+    AppState.buildingsSelector.isVisible.update { false }
 }

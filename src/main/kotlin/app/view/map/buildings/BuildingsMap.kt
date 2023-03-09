@@ -1,4 +1,4 @@
-package app.view.buildings
+package app.view.map.buildings
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
@@ -18,7 +18,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.pointer.consumeAllChanges
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.unit.IntOffset
@@ -26,13 +25,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import app.extension.update
 import app.state.AppState
-import app.view.map.model.extension.randomBuilding
 import app.view.map.model.generator.isWaterOrNull
 import app.view.toast.state.showToast
 import kotlin.math.roundToInt
 
 @Composable
-fun BoxScope.BuildingsView() {
+fun BoxScope.BuildingsMap() {
     val state by remember { AppState.game.mapState }
     val isBuildMode by remember { AppState.game.isBuildMode }
     val buildings = state.buildings.value.map { mutableStateOf(it) }
@@ -45,7 +43,7 @@ fun BoxScope.BuildingsView() {
             .onGloballyPositioned { coordinates -> state.size.update { coordinates.size } }
             .pointerInput(state) {
                 detectDragGestures { change, dragAmount ->
-                    change.consumeAllChanges()
+                    change.consume()
                     state.offsetX.update { it + dragAmount.x }
                     state.offsetY.update { it + dragAmount.y }
                 }
@@ -61,9 +59,9 @@ fun BoxScope.BuildingsView() {
                         val cell = state.getCell(listIndex)
                         val clickableModifier = if (cell.isWaterOrNull.not() && isBuildMode) {
                             Modifier.clickable {
-                                    state.buildingsKeys[listIndex]?.update { randomBuilding() }
-                                    showToast("[${rowIndex + 1}, ${cellIndex + 1}]")
-                                }
+                                state.buildingsKeys[listIndex]?.update { AppState.buildingsSelector.build() }
+                                showToast("[${rowIndex + 1}, ${cellIndex + 1}]")
+                            }
                         } else {
                             Modifier
                         }

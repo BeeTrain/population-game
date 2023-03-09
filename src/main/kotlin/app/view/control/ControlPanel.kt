@@ -65,13 +65,7 @@ private fun onRunCycleClick(): () -> Unit = {
 }
 
 private fun onBuildClick(): () -> Unit = {
-    AppState.game.isBuildMode.update { it.not() }
-    val value = if (AppState.game.isBuildMode.value) {
-        "enabled"
-    } else {
-        "disabled"
-    }
-    showToast("Build mode ${value}")
+    AppState.buildingsSelector.isVisible.update { true }
 }
 
 private fun onRestartClick(): () -> Unit = {

@@ -1,5 +1,6 @@
 package app.view.map.model
 
+import androidx.compose.runtime.Immutable
 import androidx.compose.ui.graphics.painter.Painter
 
 private val defaultNames = listOf(
@@ -11,6 +12,7 @@ private val defaultNames = listOf(
     "005.png",
 )
 
+@Immutable
 enum class Cell(val path: String) {
     WATER("water"),
     SAND("sand"),
