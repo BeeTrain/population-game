@@ -11,15 +11,8 @@ class BuildingsSelectorState {
     val selectedBuilding = mutableStateOf("")
 
     fun selectBuilding(building: String) {
-        selectedBuilding.update { building }
-        AppState.game.isBuildMode.update { building.isNotEmpty() }
-    }
-
-    fun build(): String {
-        val building = selectedBuilding.value
+        AppState.game.selectedBuilding.update { building }
         selectedBuilding.update { "" }
-        AppState.game.isBuildMode.update { false }
-
-        return building
+        isVisible.update { false }
     }
 }

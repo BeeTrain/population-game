@@ -27,7 +27,11 @@ import app.view.toast.state.showToast
 fun BoxScope.ControlPanel() {
     val state = AppState.controlPanelState
     val lifecycleStatus by remember { AppState.game.lifecycleStatusState }
-    val buildModeButtonColor = if (AppState.game.isBuildMode.value) ThemeColors.surface else ThemeColors.primary
+    val buildModeButtonColor = if (AppState.game.selectedBuilding.value.isNotEmpty()) {
+        ThemeColors.surface
+    } else {
+        ThemeColors.primary
+    }
 
     Column(
         verticalArrangement = Arrangement.Center,

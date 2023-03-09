@@ -31,3 +31,9 @@ fun Modifier.nonClickable() = clickable(
     indication = null,
     onClick = {}
 )
+
+fun Modifier.clickableNoRipple(onClick: () -> Unit) = clickable(
+    interactionSource = MutableInteractionSource(),
+    indication = null,
+    onClick = onClick
+)

@@ -13,7 +13,7 @@ class GameState {
 
     val lifecycleStatusState = mutableStateOf(lifecycle.getLifecycleStatus())
 
-    val isBuildMode = mutableStateOf(false)
+    val selectedBuilding = mutableStateOf("")
 
     fun restartGame() {
         lifecycle = PopulationLifecycle()
@@ -26,6 +26,13 @@ class GameState {
     fun runCycle() {
         lifecycle.runCycle()
         updateStates()
+    }
+
+    fun build(): String {
+        val building = selectedBuilding.value
+        selectedBuilding.update { "" }
+
+        return building
     }
 
     private fun updateStates() {
