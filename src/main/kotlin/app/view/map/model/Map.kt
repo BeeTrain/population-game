@@ -3,9 +3,9 @@ package app.view.map.model
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.unit.IntSize
+import app.model.building.Building
 import app.model.map.QuadIsland
 import app.state.AppState
-import app.view.map.model.extension.NO_BUILDING
 import app.view.map.model.extension.cellLand
 
 private const val DEFAULT_CELL_SIZE = 36
@@ -16,7 +16,7 @@ class Map(
     val cellsHeight: Int = cellsWidth,
     val cellSize: Int = DEFAULT_CELL_SIZE,
     val cells: List<Cell> = MapRandomizer.getMap(cellsWidth, cellsHeight),
-    val buildings: MutableState<List<String>> = mutableStateOf(createMapBuildings(cells))
+    val buildings: MutableState<List<Building?>> = mutableStateOf(createMapBuildings(cells))
 ) {
 
     var offsetX = mutableStateOf(0f)
@@ -26,7 +26,7 @@ class Map(
     val mapWidth = cellsWidth * cellSize + CELL_PADDING
     val mapHeight = cellsHeight * cellSize + CELL_PADDING
 
-    val buildingsKeys = mutableMapOf<Int, MutableState<String>>()
+    val buildingsKeys = mutableMapOf<Int, MutableState<Building?>>()
 
     fun getSurroundings(index: Int): CellSurroundings {
         val width = cellsWidth
@@ -89,8 +89,8 @@ class Map(
     }
 }
 
-private fun createMapBuildings(cells: List<Cell>): List<String> {
-    return List(cells.size) { NO_BUILDING }
+private fun createMapBuildings(cells: List<Cell>): List<Building?> {
+    return List(cells.size) { null }
 }
 
 object MapRandomizer {

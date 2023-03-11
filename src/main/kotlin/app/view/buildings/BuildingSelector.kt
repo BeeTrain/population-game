@@ -51,5 +51,5 @@ fun BuildingSelector() {
 }
 
 private fun onBuildingSelectorCardClick() {
-    AppState.buildingsSelector.selectedBuilding.update { "" }
+    AppState.buildingsSelector.selectedBuilding.update { null }
 }

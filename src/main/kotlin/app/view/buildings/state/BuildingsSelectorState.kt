@@ -2,17 +2,18 @@ package app.view.buildings.state
 
 import androidx.compose.runtime.mutableStateOf
 import app.extension.update
+import app.model.building.Building
 import app.state.AppState
 
 class BuildingsSelectorState {
 
     val isVisible = mutableStateOf(false)
 
-    val selectedBuilding = mutableStateOf("")
+    val selectedBuilding = mutableStateOf<Building?>(null)
 
-    fun selectBuilding(building: String) {
+    fun selectBuilding(building: Building) {
         AppState.game.selectedBuilding.update { building }
-        selectedBuilding.update { "" }
+        selectedBuilding.update { null }
         isVisible.update { false }
     }
 }

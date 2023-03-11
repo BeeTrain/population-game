@@ -1,5 +1,6 @@
 package app.view.map.buildings
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.Box
@@ -10,7 +11,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
@@ -22,7 +22,6 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import app.extension.update
 import app.state.AppState
 import app.view.map.model.generator.isWaterOrNull
@@ -57,7 +56,7 @@ fun BoxScope.BuildingsMap() {
                     state.buildingsKeys[listIndex] = buildings[listIndex]
                     key(state.buildingsKeys[listIndex]) {
                         val cell = state.getCell(listIndex)
-                        val clickableModifier = if (cell.isWaterOrNull.not() && selectedBuilding.isNotEmpty()) {
+                        val clickableModifier = if (cell.isWaterOrNull.not() && selectedBuilding != null) {
                             Modifier.clickable {
                                 state.buildingsKeys[listIndex]?.update { AppState.game.build() }
                                 showToast("[${rowIndex + 1}, ${cellIndex + 1}]")
@@ -69,12 +68,12 @@ fun BoxScope.BuildingsMap() {
                             modifier = clickableModifier
                                 .size(state.cellSize.dp)
                         ) {
-                            if (state.buildingsKeys[listIndex]?.value?.isNotEmpty() == true) {
-                                Text(
-                                    text = state.buildingsKeys[listIndex]?.value.orEmpty(),
-                                    fontSize = 22.sp,
+                            state.buildingsKeys[listIndex]?.value?.let { building ->
+                                Image(
                                     modifier = Modifier
-                                        .align(Alignment.Center)
+                                        .align(Alignment.Center),
+                                    bitmap = building.mapModel,
+                                    contentDescription = building.title
                                 )
                             }
                         }

@@ -2,6 +2,7 @@ package app.state
 
 import androidx.compose.runtime.mutableStateOf
 import app.extension.update
+import app.model.building.Building
 import app.view.map.model.Map
 
 class GameState {
@@ -13,7 +14,7 @@ class GameState {
 
     val lifecycleStatusState = mutableStateOf(lifecycle.getLifecycleStatus())
 
-    val selectedBuilding = mutableStateOf("")
+    val selectedBuilding = mutableStateOf<Building?>(null)
 
     fun restartGame() {
         lifecycle = PopulationLifecycle()
@@ -28,9 +29,9 @@ class GameState {
         updateStates()
     }
 
-    fun build(): String {
+    fun build(): Building? {
         val building = selectedBuilding.value
-        selectedBuilding.update { "" }
+        selectedBuilding.update { null }
 
         return building
     }
