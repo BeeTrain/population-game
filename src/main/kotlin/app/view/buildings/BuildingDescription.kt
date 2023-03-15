@@ -28,7 +28,9 @@ fun BoxScope.BuildingDescription() {
     val selectedBuilding by remember { AppState.buildingsSelector.selectedBuilding }
 
     AnimatedVisibility(
-        modifier = Modifier.align(Alignment.BottomCenter).padding(16.dp),
+        modifier = Modifier
+            .align(Alignment.BottomCenter)
+            .padding(16.dp),
         visible = selectedBuilding != null,
         enter = fadeIn(),
         exit = fadeOut()

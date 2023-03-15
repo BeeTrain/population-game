@@ -32,7 +32,7 @@ import kotlin.math.roundToInt
 fun BoxScope.BuildingsLayer() {
     val state by remember { AppState.game.mapState }
     val selectedBuilding by remember { AppState.game.selectedBuilding }
-    val buildings = state.buildings.value.map { mutableStateOf(it) }
+    val buildings = state.buildingsState.buildings.value.map { mutableStateOf(it) }
 
     LazyColumn(
         modifier = Modifier

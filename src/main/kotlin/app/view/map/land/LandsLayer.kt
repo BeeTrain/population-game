@@ -40,7 +40,7 @@ fun BoxScope.LandsLayer() {
                 }
             }
     ) {
-        val rows = state.cells.chunked(state.cellsWidth)
+        val rows = state.landsState.cells.chunked(state.cellsWidth)
         itemsIndexed(rows) { rowIndex, row ->
             LazyRow {
                 itemsIndexed(items = row) { cellIndex, cell ->

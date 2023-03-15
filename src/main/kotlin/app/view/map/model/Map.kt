@@ -12,11 +12,11 @@ private const val DEFAULT_CELL_SIZE = 36
 private const val CELL_PADDING = 0.2
 
 class Map(
+    val cellSize: Int = DEFAULT_CELL_SIZE,
     val cellsWidth: Int = AppState.settings.mapSize.value.cells,
     val cellsHeight: Int = cellsWidth,
-    val cellSize: Int = DEFAULT_CELL_SIZE,
-    val cells: List<Cell> = MapRandomizer.getMap(cellsWidth, cellsHeight),
-    val buildings: MutableState<List<Building?>> = mutableStateOf(createMapBuildings(cells))
+    val landsState: LandsState = LandsState(cellsWidth, cellsHeight),
+    val buildingsState: BuildingsState = BuildingsState(cellsWidth, cellsHeight)
 ) {
 
     var offsetX = mutableStateOf(0f)
@@ -79,7 +79,7 @@ class Map(
         if (index < 0) return null
         if (index > cellsWidth * cellsHeight - 1) return null
 
-        return cells[index]
+        return landsState.cells[index]
     }
 
     fun getLand(index: Int, cell: Cell): CellLand {
@@ -87,10 +87,6 @@ class Map(
 
         return cell.cellLand(surroundings)
     }
-}
-
-private fun createMapBuildings(cells: List<Cell>): List<Building?> {
-    return List(cells.size) { null }
 }
 
 object MapRandomizer {
@@ -103,4 +99,25 @@ object MapRandomizer {
 //            FourIslands(width, height).generate(),
         ).random()
     }
+}
+
+class LandsState(
+    val cellsWidth: Int,
+    val cellsHeight: Int = cellsWidth,
+    val cells: List<Cell> = MapRandomizer.getMap(cellsWidth, cellsHeight)
+)
+
+class BuildingsState(
+    val cellsWidth: Int,
+    val cellsHeight: Int = cellsWidth,
+    val buildings: MutableState<List<Building?>> = createMapBuildings(cellsWidth, cellsHeight)
+) {
+
+}
+
+private fun createMapBuildings(
+    cellsWidth: Int,
+    cellsHeight: Int = cellsWidth,
+): MutableState<List<Building?>> {
+    return mutableStateOf(List(cellsWidth * cellsHeight) { null })
 }
