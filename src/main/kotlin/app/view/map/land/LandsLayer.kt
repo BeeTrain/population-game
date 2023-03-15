@@ -14,7 +14,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.pointer.consumeAllChanges
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.unit.IntOffset
@@ -24,7 +23,7 @@ import app.state.AppState
 import kotlin.math.roundToInt
 
 @Composable
-fun BoxScope.LandsMap() {
+fun BoxScope.LandsLayer() {
     val state by remember { AppState.game.mapState }
 
     LazyColumn(

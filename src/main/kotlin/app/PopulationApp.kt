@@ -13,8 +13,8 @@ import app.view.buildings.BuildingSelector
 import app.view.control.ControlPanel
 import app.view.gameinfo.GameInfoPanel
 import app.view.info.InfoWindow
-import app.view.map.buildings.BuildingsMap
-import app.view.map.land.LandsMap
+import app.view.map.buildings.BuildingsLayer
+import app.view.map.land.LandsLayer
 import app.view.settings.GameSettings
 import app.view.toast.Toast
 
@@ -29,8 +29,8 @@ fun PopulationApp() {
                 .fillMaxSize()
                 .background(Color.Black)
         ) {
-            LandsMap()
-            BuildingsMap()
+            LandsLayer()
+            BuildingsLayer()
 
             InfoWindow()
             ControlPanel()

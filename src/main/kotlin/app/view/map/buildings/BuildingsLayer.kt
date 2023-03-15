@@ -29,7 +29,7 @@ import app.view.toast.state.showToast
 import kotlin.math.roundToInt
 
 @Composable
-fun BoxScope.BuildingsMap() {
+fun BoxScope.BuildingsLayer() {
     val state by remember { AppState.game.mapState }
     val selectedBuilding by remember { AppState.game.selectedBuilding }
     val buildings = state.buildings.value.map { mutableStateOf(it) }

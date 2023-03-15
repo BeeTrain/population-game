@@ -36,7 +36,7 @@ fun BoxScope.BuildingDescription() {
         selectedBuilding?.let { building ->
             Card(
                 modifier = Modifier.nonClickable(),
-                backgroundColor = Color.DarkGray
+                backgroundColor = Color.DarkGray.copy(alpha = 0.6f)
             ) {
                 Column(
                     modifier = Modifier
